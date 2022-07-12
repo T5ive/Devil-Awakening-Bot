@@ -13,7 +13,16 @@ public class JsonHelper<T> where T : new()
     {
         var t = new T();
         if (File.Exists(fileName))
-            t = JsonConvert.DeserializeObject<T>(File.ReadAllText(fileName));
+        {
+            try
+            {
+                t = JsonConvert.DeserializeObject<T>(File.ReadAllText(fileName));
+            }
+            catch
+            {
+                return t!;
+            }
+        }
         return t!;
     }
 }

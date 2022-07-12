@@ -29,7 +29,7 @@ public static class MyEnums
         N17,
         N18,
         N19,
-        EndLess
+        N20
     }
 
     public enum BotStep

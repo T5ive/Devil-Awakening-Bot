@@ -1,6 +1,4 @@
-using System.Diagnostics;
-using TFive.Library.Encryption;
-using TFive.Library.Utility;
+using Devil_Awakening_Bot.Auth;
 
 namespace Devil_Awakening_Bot.Forms;
 
@@ -40,9 +38,9 @@ public partial class FrmMain : Form
 
     #region User
 
-    //private static int _max = 3; // TODO
+    private static string _limitUser = "";
 
-    #endregion User
+    #endregion
 
     private static readonly FrmLog FrmLog = new();
 
@@ -77,6 +75,26 @@ public partial class FrmMain : Form
     {
         topMostToolStripMenuItem.Checked = Settings.Default.TopMost;
         TopMost = Settings.Default.TopMost;
+
+        UserSystem.UserName = Settings.Default.User;
+        UserSystem.LoggedIn = Settings.Default.Login;
+        UserSystem.LimitWin = Settings.Default.Limit;
+        _limitUser = EncryptionPHP.DecryptString(UserSystem.LimitWin, "lnwza007");
+        UpdateMenu();
+    }
+
+    private void UpdateMenu()
+    {
+        if (UserSystem.LoggedIn)
+        {
+            registerBotToolStripMenuItem.Visible = false;
+            logOutToolStripMenuItem.Visible = true;
+        }
+        else
+        {
+            registerBotToolStripMenuItem.Visible = true;
+            logOutToolStripMenuItem.Visible = false;
+        }
     }
 
     private void LoadLocation()
@@ -232,9 +250,29 @@ public partial class FrmMain : Form
 
     private void registerBotToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        // string input = TFiveInputBox.Show("Please enter your name");
-        //todo Register
+        var input = TFiveInputBox.Show("Please enter your name");
+        var date = Utility.GetNistTime().ToString("yyyy/MM/dd");
+        UserSystem.UserName = input;
+        UserSystem.LoggedIn = true;
+        UserSystem.LimitWin = EncryptionPHP.EncryptString(Connection.GetLimit(UserSystem.UserName, date), "lnwza007");
+        if (UserSystem.LimitWin == "eUV01sQtGk0GSlfIs8oynA==")
+        {
+            UserSystem.LimitWin = EncryptionPHP.EncryptString("0", "lnwza007");
+            UserSystem.UserName = "";
+            UserSystem.LoggedIn = false;
+        }
+        _limitUser = EncryptionPHP.DecryptString(UserSystem.LimitWin, "lnwza007");
+        lbTotal.Text = $"{_totalRound}/{_limitUser}";
+        UpdateMenu();
     }
+    private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        UserSystem.UserName = "";
+        UserSystem.LoggedIn = false;
+
+        UpdateMenu();
+    }
+
 
     #endregion Menu Strip
 
@@ -1366,11 +1404,32 @@ public partial class FrmMain : Form
         {
             TFive.Mouse.MoveMouseTo(reconnect.Position).LeftButtonClick()
                 .UserAction(_writeOutput, "เชื่อมต่อใหม่อีกครั้ง", LogType.Info);
-            return true;
+            return ReSetUp();
         }
 
         return false;
     }
+
+    private bool ReSetUp()
+    {
+        while (true)
+        {
+            var result = TFive.Get.ImageWindows(_hwnd, Img.Talent, PublicClass.CapturePath);
+            if (result.Status)
+            {
+                TFive.Keyboard.KeyPress(VirtualKeyCode.VK_5)
+                    .UserAction(_writeOutput, "ส่งค่า 5 ปิด Random Events", LogType.Info)
+                    .Sleep(500)
+                    .KeyPress(VirtualKeyCode.F3)
+                    .UserAction(_writeOutput, "กดปุ่ม F3 เพื่อเปิดคลัง และ Necro", LogType.Info)
+                    .Sleep(300);
+                break;
+            }
+        }
+
+        return true;
+    }
+
 
     private void CheckDisconnect()
     {
@@ -1504,7 +1563,7 @@ public partial class FrmMain : Form
         if (btnResume.Text == "Pause")
         {
             btnResume.Text = "Resume";
-            _pause = false;
+            _pause = true;
             btnStart.Enabled = false;
             return;
         }
@@ -1512,7 +1571,7 @@ public partial class FrmMain : Form
         if (btnResume.Text == "Resume")
         {
             btnResume.Text = "Pause";
-            _pause = true;
+            _pause = false;
             btnStart.Enabled = true;
         }
     }
@@ -1530,7 +1589,7 @@ public partial class FrmMain : Form
 
     private void tmUI_Tick(object sender, EventArgs e)
     {
-        lbTotal.Text = _totalRound.ToString();
+        lbTotal.Text = $"{_totalRound}/{_limitUser}";
         lbWin.Text = _winRound.ToString();
         lbBoss.Text = _totalBoss.ToString();
         lbForceClose.Text = _forceClose.ToString();
@@ -1713,7 +1772,8 @@ public partial class FrmMain : Form
 
     private void testToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        EncryptionPHP.start2();
+
+        //EncryptionPHP.start2();
 
         //_currentRound = PublicClass.AppSetting.Profile.LimitRound + 1;
         //var pnt = TFive.Get.ImageScreen(Img.PlayDota, PublicClass.CapturePath);
@@ -1743,9 +1803,9 @@ public partial class FrmMain : Form
 
     private void heroToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        EncryptionPHP.start();
-        //var name = (string)toolStripComboBox1.SelectedItem;
-        //_hero = name;
+
+        var name = (string)toolStripComboBox1.SelectedItem;
+        _hero = new Hero(name, HeroSkillType.Disable, HeroSkillType.Disable);
     }
 
     private void stepToolStripMenuItem_Click(object sender, EventArgs e)

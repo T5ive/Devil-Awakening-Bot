@@ -16,7 +16,7 @@ public class Profiles
     public Episode Episode { get; set; } = Episode.EP2;
 
     [JsonConverter(typeof(StringEnumConverter))]
-    public Level Level { get; set; } = Level.N19;
+    public Level Level { get; set; } = Level.N20;
 
     public bool Abyss { get; set; } = true;
 
