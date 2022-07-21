@@ -41,8 +41,6 @@
             this.numPick = new System.Windows.Forms.NumericUpDown();
             this.lbPick = new System.Windows.Forms.Label();
             this.btnBrowseSteam = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.chkAbyss = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numLeave = new System.Windows.Forms.NumericUpDown();
             this.lbLeave = new System.Windows.Forms.Label();
@@ -54,8 +52,13 @@
             this.cbArtifact = new System.Windows.Forms.ComboBox();
             this.cbArtifact2 = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.cbN = new System.Windows.Forms.ComboBox();
             this.chkTicket = new System.Windows.Forms.CheckBox();
+            this.chkAbyss = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbN = new System.Windows.Forms.ComboBox();
+            this.numSword = new System.Windows.Forms.NumericUpDown();
+            this.chkSword = new System.Windows.Forms.CheckBox();
+            this.lbSword = new System.Windows.Forms.Label();
             this.tabHero = new System.Windows.Forms.TabPage();
             this.dataHero = new System.Windows.Forms.DataGridView();
             this.colHero = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numLeave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNecro)).BeginInit();
             this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSword)).BeginInit();
             this.tabHero.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataHero)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -186,18 +190,21 @@
             this.tableLayoutPanel1.Controls.Add(this.numPick, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lbPick, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnBrowseSteam, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.chkAbyss, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.numLeave, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.lbLeave, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.numNecro, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lbNecro, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label20, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.cbN, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.chkTicket, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label20, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.chkTicket, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.chkAbyss, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.cbN, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.numSword, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.chkSword, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lbSword, 2, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -333,26 +340,6 @@
             this.btnBrowseSteam.UseVisualStyleBackColor = true;
             this.btnBrowseSteam.Click += new System.EventHandler(this.btnBrowseSteam_Click);
             // 
-            // label11
-            // 
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 150);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 30);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Level: ";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // chkAbyss
-            // 
-            this.chkAbyss.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkAbyss.Location = new System.Drawing.Point(402, 153);
-            this.chkAbyss.Name = "chkAbyss";
-            this.chkAbyss.Size = new System.Drawing.Size(65, 24);
-            this.chkAbyss.TabIndex = 23;
-            this.chkAbyss.Text = "Abyss";
-            this.chkAbyss.UseVisualStyleBackColor = true;
-            // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -446,7 +433,7 @@
             // label20
             // 
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Location = new System.Drawing.Point(3, 180);
+            this.label20.Location = new System.Drawing.Point(3, 210);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(88, 30);
             this.label20.TabIndex = 32;
@@ -457,13 +444,13 @@
             // 
             this.tableLayoutPanel9.ColumnCount = 3;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.Controls.Add(this.cbArtifact, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.cbArtifact2, 2, 0);
             this.tableLayoutPanel9.Controls.Add(this.label19, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(94, 180);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(94, 210);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
@@ -486,7 +473,7 @@
             "Iron Blood Silver Wolf"});
             this.cbArtifact.Location = new System.Drawing.Point(3, 3);
             this.cbArtifact.Name = "cbArtifact";
-            this.cbArtifact.Size = new System.Drawing.Size(136, 23);
+            this.cbArtifact.Size = new System.Drawing.Size(137, 23);
             this.cbArtifact.TabIndex = 19;
             // 
             // cbArtifact2
@@ -502,20 +489,50 @@
             "Ordinary Punch",
             "Void Walk",
             "Iron Blood Silver Wolf"});
-            this.cbArtifact2.Location = new System.Drawing.Point(165, 3);
+            this.cbArtifact2.Location = new System.Drawing.Point(164, 3);
             this.cbArtifact2.Name = "cbArtifact2";
-            this.cbArtifact2.Size = new System.Drawing.Size(137, 23);
+            this.cbArtifact2.Size = new System.Drawing.Size(138, 23);
             this.cbArtifact2.TabIndex = 22;
             // 
             // label19
             // 
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Location = new System.Drawing.Point(145, 0);
+            this.label19.Location = new System.Drawing.Point(146, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(14, 30);
+            this.label19.Size = new System.Drawing.Size(12, 30);
             this.label19.TabIndex = 23;
             this.label19.Text = "2";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // chkTicket
+            // 
+            this.chkTicket.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkTicket.Location = new System.Drawing.Point(402, 213);
+            this.chkTicket.Name = "chkTicket";
+            this.chkTicket.Size = new System.Drawing.Size(65, 24);
+            this.chkTicket.TabIndex = 33;
+            this.chkTicket.Text = "Ticket";
+            this.chkTicket.UseVisualStyleBackColor = true;
+            // 
+            // chkAbyss
+            // 
+            this.chkAbyss.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkAbyss.Location = new System.Drawing.Point(402, 183);
+            this.chkAbyss.Name = "chkAbyss";
+            this.chkAbyss.Size = new System.Drawing.Size(65, 24);
+            this.chkAbyss.TabIndex = 23;
+            this.chkAbyss.Text = "Abyss";
+            this.chkAbyss.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(3, 180);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 30);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Level: ";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbN
             // 
@@ -543,20 +560,56 @@
             "N18",
             "N19",
             "N20"});
-            this.cbN.Location = new System.Drawing.Point(97, 153);
+            this.cbN.Location = new System.Drawing.Point(97, 183);
             this.cbN.Name = "cbN";
             this.cbN.Size = new System.Drawing.Size(299, 23);
             this.cbN.TabIndex = 22;
             // 
-            // chkTicket
+            // numSword
             // 
-            this.chkTicket.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkTicket.Location = new System.Drawing.Point(402, 183);
-            this.chkTicket.Name = "chkTicket";
-            this.chkTicket.Size = new System.Drawing.Size(65, 24);
-            this.chkTicket.TabIndex = 33;
-            this.chkTicket.Text = "Ticket";
-            this.chkTicket.UseVisualStyleBackColor = true;
+            this.numSword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numSword.Location = new System.Drawing.Point(97, 153);
+            this.numSword.Maximum = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+            this.numSword.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numSword.Name = "numSword";
+            this.numSword.Size = new System.Drawing.Size(299, 23);
+            this.numSword.TabIndex = 35;
+            this.numSword.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numSword.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
+            this.numSword.ValueChanged += new System.EventHandler(this.numSword_ValueChanged);
+            // 
+            // chkSword
+            // 
+            this.chkSword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkSword.Location = new System.Drawing.Point(3, 153);
+            this.chkSword.Name = "chkSword";
+            this.chkSword.Size = new System.Drawing.Size(88, 24);
+            this.chkSword.TabIndex = 36;
+            this.chkSword.Text = "Up Sword: ";
+            this.chkSword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkSword.UseVisualStyleBackColor = true;
+            // 
+            // lbSword
+            // 
+            this.lbSword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbSword.Location = new System.Drawing.Point(402, 150);
+            this.lbSword.Name = "lbSword";
+            this.lbSword.Size = new System.Drawing.Size(65, 30);
+            this.lbSword.TabIndex = 37;
+            this.lbSword.Text = "00:35 นาที";
+            this.lbSword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabHero
             // 
@@ -1572,6 +1625,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numLeave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNecro)).EndInit();
             this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numSword)).EndInit();
             this.tabHero.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataHero)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -1686,5 +1740,8 @@
         private DataGridViewTextBoxColumn colHero;
         private DataGridViewComboBoxColumn colQ;
         private DataGridViewComboBoxColumn colR;
+        private NumericUpDown numSword;
+        private CheckBox chkSword;
+        private Label lbSword;
     }
 }

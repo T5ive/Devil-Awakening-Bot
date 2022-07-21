@@ -20,9 +20,9 @@ public partial class FrmMain : Form
 
     private static bool _status, _pause, _dota, _randomEvents, _upSword, _endRound, _gift;
 
-    private static bool _dup, _enter;
+    private static bool _enter;
 
-    private static int _currentRound = 1, _leaveTime, _pickTime, _necroTime, _bossWave, _bossTime;
+    private static int _currentRound = 1, _leaveTime, _pickTime, _necroTime, _bossWave, _bossTime, _upSwordTime;
 
     private static int _dotaRound, _totalRound, _winRound, _skipRound, _totalBoss, _totalMatchTime, _totalTimeRound, _totalTimeAll, _forceClose;
 
@@ -195,6 +195,7 @@ public partial class FrmMain : Form
         _leaveTime = PublicClass.AppSetting.Profile.LeaveTime;
         _pickTime = PublicClass.AppSetting.Profile.PickTime;
         _necroTime = PublicClass.AppSetting.Profile.NecroTime;
+        _upSwordTime = PublicClass.AppSetting.Profile.UpSwordTime;
         _bossTime = 20;
         _totalTimeRound = 0;
         _totalMatchTime = 0;
@@ -205,7 +206,6 @@ public partial class FrmMain : Form
         _skillW = new Skill();
         _skillE = new Skill();
         _endRound = false;
-        _dup = false;
         _enter = false;
     }
 
@@ -570,10 +570,11 @@ public partial class FrmMain : Form
                 #region Setup UI, Talents, Artifact
 
                 case BotStep.Talent:
-                    {
+                    {                        
                         var result = TFive.Get.ImageWindows(_hwnd, Img.Talent, PublicClass.CapturePath);
                         if (result.Status)
                         {
+                            UpArmor();
                             TFive.Mouse.Sleep(500)
                                 .MoveMouseTo(result.Position).LeftButtonClick() // คลิก Talent
                                 .Sleep(500);
@@ -603,7 +604,6 @@ public partial class FrmMain : Form
 
                 case BotStep.Setup:
                     {
-                        UpArmor();
                         FirstSkill();
                         TFive.Keyboard
                             .KeyPress(VirtualKeyCode.F3)
@@ -1151,6 +1151,20 @@ public partial class FrmMain : Form
     private void UpSword()
     {
         if (_upSword) return;
+        if (PublicClass.AppSetting.Profile.UpSword && _upSwordTime <= 0)
+        {
+            var sword = TFive.Get.ImageWindowsArea(_hwnd, Img.Sword1, 515, 960, 800, 1000, PublicClass.CapturePath);
+            if (sword.Status)
+            {
+                TFive.Mouse.MoveMouseTo(sword.Position.SetTo(5)).RightButtonClick()
+                    .UserAction(_writeOutput, "คลิก อัพเกรด \"ดาบ\" ต่อเนื่อง", LogType.Info)
+                    .Sleep(500)
+                    .MoveMouseTo(_midScreen); // ย้ายเมาส์ไปกลางจอ
+                _upSword = true;
+                return;
+            }
+        }
+
         var armorList = new List<string> { Img.ArmorRed, Img.ArmorRed2, Img.ArmorRed3, Img.ArmorRed4 };
         var armorRed = TFive.Get.ImageWindowsAreaList(_hwnd, armorList.ToArray(), 515, 960, 800, 1010, PublicClass.CapturePath);
         foreach (var result in from armor in armorRed
@@ -1270,8 +1284,6 @@ public partial class FrmMain : Form
     {
         if (_leaveTime > 0 && !skip) return;
 
-        if (_dup) TFive.Win32.Sleep(1000 * 5);
-
         var result = TFive.Get.ImageWindows(_hwnd, Img.TicketEnd, PublicClass.CapturePath); // ถ้าเจอตั๋ว
         if (result.Status)
         {
@@ -1289,7 +1301,6 @@ public partial class FrmMain : Form
             if (_endRound)
             {
                 Pause();
-
                 RoundUp(); // เพิ่มจำนวนรอบที่จบ
                 return;
             }
@@ -1333,7 +1344,6 @@ public partial class FrmMain : Form
             TFive.Win32.OpenProgram(PublicClass.AppSetting.Profile.SteamPath)
                 .UserAction(_writeOutput, "เปิด Steam", LogType.App)
                 .Sleep(1000 * 30);
-
             return;
         }
 
@@ -1341,14 +1351,6 @@ public partial class FrmMain : Form
         {
             try
             {
-                if (_dup) return;
-                if (_botStep is >= BotStep.Setup and <= BotStep.End)
-                {
-                    _dup = true;
-                    CheckDefeat();
-                    return;
-                }
-
                 TFive.Win32.CloseProcess("dota2")
                     .UserAction(_writeOutput, "บังคับ ปิดเกม Dota2", LogType.App)
                 .Sleep(5000);
@@ -1429,7 +1431,6 @@ public partial class FrmMain : Form
 
         return true;
     }
-
 
     private void CheckDisconnect()
     {
@@ -1527,6 +1528,7 @@ public partial class FrmMain : Form
         if (_botStep >= BotStep.Talent)
         {
             _totalMatchTime++;
+            _upSwordTime--;
         }
 
         if (_pause) return;

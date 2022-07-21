@@ -51,6 +51,10 @@ public partial class FrmProfile : Form
         numNecro.Value = PublicClass.AppSetting.Profile.NecroTime;
         numLeave.Value = PublicClass.AppSetting.Profile.LeaveTime;
 
+        chkSword.Checked = PublicClass.AppSetting.Profile.UpSword;
+        numSword.Value = PublicClass.AppSetting.Profile.UpSwordTime;
+
+
         cbN.SelectedIndex = (int)PublicClass.AppSetting.Profile.Level;
         chkAbyss.Checked = PublicClass.AppSetting.Profile.Abyss;
         chkTicket.Checked = PublicClass.AppSetting.Profile.Ticket;
@@ -99,6 +103,9 @@ public partial class FrmProfile : Form
                 PublicClass.AppSetting.Profile.NecroTime = (int)numNecro.Value;
                 PublicClass.AppSetting.Profile.LeaveTime = (int)numLeave.Value;
                 PublicClass.AppSetting.Profile.Level = (Level)cbN.SelectedIndex;
+                PublicClass.AppSetting.Profile.UpSword = chkSword.Checked;
+                PublicClass.AppSetting.Profile.UpSwordTime = (int)numSword.Value;
+
                 PublicClass.AppSetting.Profile.Episode = cbN.SelectedIndex < 10 ? Episode.EP1 : Episode.EP2;
                 PublicClass.AppSetting.Profile.Abyss = chkAbyss.Checked;
                 PublicClass.AppSetting.Profile.Artifacts = GetArtifacts();
@@ -175,6 +182,10 @@ public partial class FrmProfile : Form
     private void numNecro_ValueChanged(object sender, EventArgs e)
     {
         lbPick.Text = $"{((int)numPick.Value).SecToMin()} นาที";
+    }
+    private void numSword_ValueChanged(object sender, EventArgs e)
+    {
+        lbSword.Text = $"{((int)numSword.Value).SecToMin()} นาที";
     }
 
     #endregion Num Change
@@ -712,4 +723,6 @@ public partial class FrmProfile : Form
     }
 
     #endregion Utils Datagrid
+
+    
 }

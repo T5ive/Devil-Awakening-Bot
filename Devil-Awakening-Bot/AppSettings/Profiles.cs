@@ -12,6 +12,10 @@ public class Profiles
 
     public int LeaveTime { get; set; } = 60 * 6;
 
+    public bool UpSword { get; set; } = false;
+
+    public int UpSwordTime { get; set; } = 35;
+
     [JsonConverter(typeof(StringEnumConverter))]
     public Episode Episode { get; set; } = Episode.EP2;
 
