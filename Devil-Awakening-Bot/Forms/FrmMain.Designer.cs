@@ -199,15 +199,15 @@
             this.stepToolStripMenuItem,
             this.bossToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
-            this.devToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.devToolStripMenuItem.Text = "Dev";
-            this.devToolStripMenuItem.Visible = false;
+            this.devToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.devToolStripMenuItem.Text = "Advance";
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // heroToolStripMenuItem
@@ -215,7 +215,7 @@
             this.heroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox1});
             this.heroToolStripMenuItem.Name = "heroToolStripMenuItem";
-            this.heroToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.heroToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.heroToolStripMenuItem.Text = "Hero";
             this.heroToolStripMenuItem.Click += new System.EventHandler(this.heroToolStripMenuItem_Click);
             // 
@@ -260,7 +260,7 @@
             this.stepToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox2});
             this.stepToolStripMenuItem.Name = "stepToolStripMenuItem";
-            this.stepToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.stepToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stepToolStripMenuItem.Text = "Step";
             this.stepToolStripMenuItem.Click += new System.EventHandler(this.stepToolStripMenuItem_Click);
             // 
@@ -293,7 +293,7 @@
             this.bossToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox3});
             this.bossToolStripMenuItem.Name = "bossToolStripMenuItem";
-            this.bossToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.bossToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.bossToolStripMenuItem.Text = "Boss";
             this.bossToolStripMenuItem.Click += new System.EventHandler(this.bossToolStripMenuItem_Click);
             // 

@@ -1,5 +1,3 @@
-using Devil_Awakening_Bot.Auth;
-
 namespace Devil_Awakening_Bot.Forms;
 
 public partial class FrmMain : Form
@@ -38,7 +36,7 @@ public partial class FrmMain : Form
 
     #region User
 
-    private static string _limitUser = "";
+    //private static string _limitUser = "";
 
     #endregion
 
@@ -67,7 +65,7 @@ public partial class FrmMain : Form
         CheckFolder();
 
 #if DEBUG
-        devToolStripMenuItem.Visible = true;
+        testToolStripMenuItem.Visible = true;
 #endif
     }
 
@@ -76,25 +74,25 @@ public partial class FrmMain : Form
         topMostToolStripMenuItem.Checked = Settings.Default.TopMost;
         TopMost = Settings.Default.TopMost;
 
-        UserSystem.UserName = Settings.Default.User;
-        UserSystem.LoggedIn = Settings.Default.Login;
-        UserSystem.LimitWin = Settings.Default.Limit;
-        _limitUser = EncryptionPHP.DecryptString(UserSystem.LimitWin, "lnwza007");
-        UpdateMenu();
+        //UserSystem.UserName = Settings.Default.User;
+        //UserSystem.LoggedIn = Settings.Default.Login;
+        //UserSystem.LimitWin = Settings.Default.Limit;
+        //_limitUser = EncryptionPHP.DecryptString(UserSystem.LimitWin, "lnwza007");
+        //UpdateMenu();
     }
 
     private void UpdateMenu()
     {
-        if (UserSystem.LoggedIn)
-        {
-            registerBotToolStripMenuItem.Visible = false;
-            logOutToolStripMenuItem.Visible = true;
-        }
-        else
-        {
-            registerBotToolStripMenuItem.Visible = true;
-            logOutToolStripMenuItem.Visible = false;
-        }
+        //if (UserSystem.LoggedIn)
+        //{
+        //    registerBotToolStripMenuItem.Visible = false;
+        //    logOutToolStripMenuItem.Visible = true;
+        //}
+        //else
+        //{
+        //    registerBotToolStripMenuItem.Visible = true;
+        //    logOutToolStripMenuItem.Visible = false;
+        //}
     }
 
     private void LoadLocation()
@@ -250,27 +248,27 @@ public partial class FrmMain : Form
 
     private void registerBotToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        var input = TFiveInputBox.Show("Please enter your name");
-        var date = Utility.GetNistTime().ToString("yyyy/MM/dd");
-        UserSystem.UserName = input;
-        UserSystem.LoggedIn = true;
-        UserSystem.LimitWin = EncryptionPHP.EncryptString(Connection.GetLimit(UserSystem.UserName, date), "lnwza007");
-        if (UserSystem.LimitWin == "eUV01sQtGk0GSlfIs8oynA==")
-        {
-            UserSystem.LimitWin = EncryptionPHP.EncryptString("0", "lnwza007");
-            UserSystem.UserName = "";
-            UserSystem.LoggedIn = false;
-        }
-        _limitUser = EncryptionPHP.DecryptString(UserSystem.LimitWin, "lnwza007");
-        lbTotal.Text = $"{_totalRound}/{_limitUser}";
-        UpdateMenu();
+        //var input = TFiveInputBox.Show("Please enter your name");
+        //var date = Utility.GetNistTime().ToString("yyyy/MM/dd");
+        //UserSystem.UserName = input;
+        //UserSystem.LoggedIn = true;
+        //UserSystem.LimitWin = EncryptionPHP.EncryptString(Connection.GetLimit(UserSystem.UserName, date), "lnwza007");
+        //if (UserSystem.LimitWin == "eUV01sQtGk0GSlfIs8oynA==")
+        //{
+        //    UserSystem.LimitWin = EncryptionPHP.EncryptString("0", "lnwza007");
+        //    UserSystem.UserName = "";
+        //    UserSystem.LoggedIn = false;
+        //}
+        //_limitUser = EncryptionPHP.DecryptString(UserSystem.LimitWin, "lnwza007");
+        //lbTotal.Text = $"{_totalRound}/{_limitUser}";
+        //UpdateMenu();
     }
     private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        UserSystem.UserName = "";
-        UserSystem.LoggedIn = false;
+        //UserSystem.UserName = "";
+        //UserSystem.LoggedIn = false;
 
-        UpdateMenu();
+        //UpdateMenu();
     }
 
 
@@ -570,7 +568,7 @@ public partial class FrmMain : Form
                 #region Setup UI, Talents, Artifact
 
                 case BotStep.Talent:
-                    {                        
+                    {
                         var result = TFive.Get.ImageWindows(_hwnd, Img.Talent, PublicClass.CapturePath);
                         if (result.Status)
                         {
@@ -1591,7 +1589,7 @@ public partial class FrmMain : Form
 
     private void tmUI_Tick(object sender, EventArgs e)
     {
-        lbTotal.Text = $"{_totalRound}/{_limitUser}";
+        lbTotal.Text = _totalRound.ToString();
         lbWin.Text = _winRound.ToString();
         lbBoss.Text = _totalBoss.ToString();
         lbForceClose.Text = _forceClose.ToString();
